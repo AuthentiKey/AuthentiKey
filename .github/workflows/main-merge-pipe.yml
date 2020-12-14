@@ -30,9 +30,9 @@ jobs:
       - name: Build with Maven
         run: mvn package -Pnative
       - name: Build with Docker
-        run: docker build -f src/main/docker/Dockerfile.native -t quarkus/backend .
+        run: docker build -f src/main/docker/Dockerfile.native -t quarkus/backend:latest .
       - name: Push to Github Packages
         run: |
-          docker login docker.pkg.github.com --username ${{ github.repository_owner }} --password ${{ secrets.authentikey_token }}
-          docker tag authentikey/authentikey:latest docker.pkg.github.com/authentikey/authentikey/authentikey:stable
-          docker push docker.pkg.github.com/authentikey/authentikey/authentikey:stable
+          docker login ghcr.io --username rosariop --password ${{ secrets.authentikey_token }}
+          docker tag quarkus/backend:latest ghcr.io/authentikey/authentikey/authentikey:stable
+          docker push ghcr.io/authentikey/authentikey/authentikey:stable
