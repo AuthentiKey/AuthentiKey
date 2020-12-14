@@ -33,6 +33,6 @@ jobs:
         run: docker build -f src/main/docker/Dockerfile.native -t quarkus/backend .
       - name: Push to Github Packages
         run: |
-          docker login docker.pkg.github.com --username roasriop --password ${{ secrets.DOCKER_TOKEN }}
-          docker tag authentikey/authentikey:latest docker.pkg.github.com/authentikey/authentikey/authentikey:latest
-          docker push docker.pkg.github.com/authentikey/authentikey/authentikey:latest
+          docker login docker.pkg.github.com --username ${{ github.repository_owner }} --password ${{ secrets.authentikey_token }}
+          docker tag authentikey/authentikey:latest docker.pkg.github.com/authentikey/authentikey/authentikey:stable
+          docker push docker.pkg.github.com/authentikey/authentikey/authentikey:stable
