@@ -1,7 +1,7 @@
 name: Java CI
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
@@ -14,11 +14,11 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: rosariop
           password: ${{ secrets.authentikey_token }}
 
   build:
-    needs: unit_test
+    needs: login
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
